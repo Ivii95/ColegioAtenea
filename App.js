@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, Alert } from 'react-native'
+import AppLayout from './layout/appLayout'
+class APPtenea extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            loading: false,
+            message: 'Aplicaciones-NT'
+        }
+    }
+    login = () => {
+        this.setState({
+            username : this.state.username
+        })
+    }
+    alerta = () => { Alert.alert ('Prueba de alerta') }
+    render() {
+        let {username} = this.state
+        let {password} = this.state
+        let {loading}= this.state
+        let {message}= this.state
+        return (
+            <AppLayout/>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default APPtenea

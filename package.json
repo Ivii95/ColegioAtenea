@@ -8,11 +8,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@types/node": "^14.14.3",
+    "axios": "^0.21.0",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
+    "react-native-stateless-form": "^0.3.2",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
