@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "ColegioAtenea",
-    "slug": "ColegioAtenea",
+    "name": "AteneApp",
+    "slug": "AteneApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffcc67"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
