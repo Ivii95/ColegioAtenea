@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AlumnoLayout from '../layouts/alumnoLayout'
+import ContainerLayout from '../layouts/profesorLayout'
 class Body extends Component {
     constructor(props) {
         super(props)
@@ -16,14 +16,6 @@ class Body extends Component {
                     id: '2',
                     title: 'Ejercicios, Examenes',
                     url: require('../img/SeguimientoEducativo.png'),
-                }, {
-                    id: '3',
-                    title: 'Ejercicios, Examenes',
-                    url: require('../img/evaluaciones.png'),
-                }, {
-                    id: '4',
-                    title: 'Ejercicios, Examenes',
-                    url: require('../img/Horarios.png'),
                 }
             ]
         }
@@ -31,16 +23,12 @@ class Body extends Component {
     render() {
         let username = this.state.username
         let message = this.state.message
-        let Items = this.state.Items
+        let items = this.state.Items
         return (
-            <AlumnoLayout
-                Items={Items}
+            <ContainerLayout
                 username={username}
                 message={message}
-                name='Alberto Sanguino Acedo'
-                curso='S3A'
-                tutor='Juan Carlos Merchán Salas'
-                tutorias='Miércoles, de 08:20 - 09:15 h.'
+                Items={items}
             />
         )
     }

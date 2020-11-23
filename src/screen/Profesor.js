@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, } from 'react-native'
+import { View, Alert } from 'react-native'
 //SMART COMPONENTS
 import Header from '../components/header';
-import Body from '../components/login';
+import Body from '../components/profesor';
 import Footer from '../components/footer';
 
-class Login extends Component {
+import * as G from '../functions/GLOBALES'
+//API
+import api from '../functions/api'
+class Profesor extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            data: [],
-            isLoading: true
-        };
+            id: G.ID,
+            footer: 'Profesor: ' + G.NAME,
+        }
     }
-    async componentDidMount() {
+    /*async componentDidMount() {
         await fetch('http://192.168.0.223:80/atenea/config.php?opcion=1')
             .then((response) => response.json())
             .then((data) => {
@@ -24,16 +26,16 @@ class Login extends Component {
             .finally(() => {
                 this.setState({ isLoading: false });
             });
-    }
+    }*/
     render() {
-        const { data, isLoading } = this.state;
+        let ID, footer = this.states
         return (
             <View style={{ flex: 1 }}>
                 <Header />
-                <Body data={data}/>
-                <Footer footer={'Aplicaciones-NT'} />
+                <Body id={ID} />
+                <Footer footer={footer} />
             </View>
         );
     }
 }
-export default Login
+export default Profesor

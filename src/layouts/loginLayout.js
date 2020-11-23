@@ -1,30 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
-import body from '../css/stylesHeaderFooter'
-import styles from '../css/style'
+import styles from '../css/main'
 import Functions from '../functions/Functions'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
-function login(props) {
-    let loginAcepted = () => { Alert.alert('Usuario y Contraseña: Correcto') }
+import * as G from '../functions/GLOBALES'
+import md5 from "react-native-md5";
+
+const login = (props) => {
+    profesores = () => {
+
+        if ('alumno' == userName && '1234' == passWord) {
+            Functions.login(G.ALUMNO);
+        } else if ('padres' == userName && '1234' == passWord) {
+            Functions.login(G.PADRES);
+        } else {
+            for (const datos of dataProfesores) {
+                let passMD5=md5.hex_md5(passWord)
+                if (datos.usuario == userName && datos.clave == passMD5) {
+                    G.ID = datos.id
+                    G.NAME = datos.nombre +' '+ datos.apellidos
+                    Functions.login(G.PROFESOR);
+                }
+            }
+        }
+    }
+
+    const dataProfesores = props.data
+    const [log, setLog] = useState('');
+    const [userName, setUserName] = useState('');
+    const [passWord, setPassWord] = useState('');
     return (
-        <View style={body.body}>
+        <View style={styles.body}>
             <View style={{ marginVertical: 20 }}>
                 <Text style={styles.negrita}>Bienvenido</Text>
             </View>
-            <Text style={styles.textos}><FontAwesome name='user' size={20}></FontAwesome> Usuario: {props.username}</Text>
+            <Text style={styles.textos}>Usuario:</Text>
             <TextInput
                 inlineImageLeft='search_icon'
                 style={styles.input}
-                onChangeText={(text) => ({ username: text })}
+                onChangeText={(text) => setUserName(text)}
                 placeholder='Usuario...'
                 textContentType='username'
             />
-            
-            <Text style={styles.textos}> <Ionicons name='md-lock' size={20}></Ionicons> Contraseña: {props.password}</Text>
+            <Text style={styles.textos}>Contraseña:{md5.hex_md5(passWord)}</Text>
             <TextInput
                 inlineImageLeft='search_icon'
                 style={styles.input}
-                onChangeText={text => ({ password: text })}
+                onChangeText={text => setPassWord(text)}
                 placeholder='Contraseña...'
                 textContentType='password'
                 secureTextEntry
@@ -32,8 +53,11 @@ function login(props) {
             <View style={{ marginVertical: 20 }}>
                 <Button
                     title="Acceder"
-                    onPress={() => { Alert.alert('Usuario y Contraseña: Correcto') }}
+                    onPress={() => {
+                        profesores()//Functions.login({ username: userName, password: passWord }) //username={userName} password={passWord} />
+                    }}
                 />
+                <Text>{log}</Text>
             </View>
         </View>
     )
