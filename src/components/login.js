@@ -5,16 +5,14 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            loading: false,
-            message: 'Aplicaciones-NT'
         }
     }
     render() {
         let { username, password, loading, message } = this.state
         return (
-            <LoginLayout state={this.state} data={this.props.data} />
+            <LoginLayout
+                state={this.state}
+                data={this.props.data} />
         )
     }
 }

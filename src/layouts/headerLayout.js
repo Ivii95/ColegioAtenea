@@ -1,7 +1,8 @@
+import { useLinkProps } from '@react-navigation/native'
 import React from 'react'
 import { View, Text, Image, Linking, TouchableHighlight } from 'react-native'
 import styles from '../css/main'
-function Header() {
+function Header(props) {
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.headerTop}>
@@ -13,8 +14,7 @@ function Header() {
                 </TouchableHighlight>
             </View>
             <View style={styles.headerBot}>
-                {//<Text>Colegio Atenea Mérida</Text>
-                }
+                <Text style={styles.tituloamarillo}>Bienvenido {props.text}</Text>
             </View>
         </View>
     )

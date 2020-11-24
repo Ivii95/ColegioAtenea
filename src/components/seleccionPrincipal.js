@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
-import ContainerLayout from '../layouts/profesorLayout'
+import ContainerLayout from '../layouts/seleccionPrincipal'
+import * as G from '../functions/GLOBALES'
 class Body extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: props.username,
-            loading: false,
             //Los items son los objetos que se mostraran en el FlatList del contenido final.
             Items: [
                 {
                     id: '1',
-                    title: 'ZonaComunicacion.png',
-                    url: require('../img/ZonaComunicacion.png'),
+                    title: G.ALUMNO,
+                    url: require('../img/alumnos.png'),
                 },
                 {
                     id: '2',
-                    title: 'Ejercicios, Examenes',
-                    url: require('../img/SeguimientoEducativo.png'),
+                    title: G.PADRES,
+                    url: require('../img/padres.png'),
+                },
+                {
+                    id: '3',
+                    title: G.PROFESOR,
+                    url: require('../img/profesores.png'),
                 }
             ]
         }
     }
     render() {
-        let username,message,items = this.state
         return (
             <ContainerLayout
-                username={username}
-                message={message}
-                Items={items}
+                Items={this.state.Items}
             />
         )
     }

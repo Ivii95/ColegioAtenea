@@ -8,6 +8,9 @@ class Body extends Component {
             username: props.username,
             loading: false,
             Items: [
+                
+            ],
+             Hijos: [
                 {
                     id: '1',
                     title: 'Mi Cuenta',
@@ -22,15 +25,15 @@ class Body extends Component {
                     id: '3',
                     title: 'Agenda',
                     url: require('../img/agenda.png'),
-                }
-            ],
-             Hijos: [
-                {
-                    id: '57',
-                    title: 'Lucia',
                 },
                 {
-                    id: '58',
+                    id:'4',
+                    ide: 'hijo',
+                    title: 'Lucia',
+                },
+                {   
+                    id:'5',
+                    ide: 'hijo',
                     title: 'Alberto',
                 }
 

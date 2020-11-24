@@ -14,7 +14,8 @@ class Alumno extends Component {
         }
     }
     render() {
-        let ID, footer = this.state
+        let ID=this.state.ID
+        let footer = this.state.footer
         return (
             <View style={{ flex: 1 }}>
                 <Header />

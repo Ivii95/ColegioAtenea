@@ -10,16 +10,17 @@ class Padres extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ID: G.ID,
+            id: G.ID,
             footer: 'Padres:' + G.USERNAME
         }
     }
     render() {
-        let ID, footer = this.state
+        let id = this.state.id
+        let footer = this.state.footer
         return (
             <View style={{ flex: 1 }}>
                 <Header />
-                <Body id={ID} />
+                <Body id={id} />
                 <Footer footer={footer} />
             </View>
         );

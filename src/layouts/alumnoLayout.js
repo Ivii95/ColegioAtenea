@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, ImageBackground, ScrollView, TouchableHighlight } from 'react-native'
+import { View, Text, ImageBackground, TouchableHighlight } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
 import styles from '../css/main'
 

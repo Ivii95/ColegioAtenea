@@ -12,7 +12,7 @@ export default class App extends Component {
     };
   }
   async componentDidMount() {
-    await fetch('http://192.168.0.223:80/atenea/config.php?opcion=1')
+    await fetch('http://192.168.0.223:80/atenea/config.php?opcion=Profesor')
       .then((response) => response.json())
       .then((data) => {
         console.log(data)

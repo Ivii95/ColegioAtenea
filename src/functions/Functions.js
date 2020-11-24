@@ -48,5 +48,9 @@ class Functions {
             this.loginNoAcepted(tipo);
         }
     }
+    mandarLogin = (title) => {
+        G.SELECCION = title
+        RootNavigation.navigate('Login');
+    }
 }
 export default new Functions()

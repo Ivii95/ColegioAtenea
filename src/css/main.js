@@ -96,6 +96,15 @@ export default StyleSheet.create({
       alignItems: 'center',
       alignContent: 'center',
       borderRadius: 25
+   }, BotonesInicio: {
+      flex: 1,
+      width: 290,
+      height: 160,
+      marginVertical: 10,
+      marginHorizontal: 10,
+      alignItems: 'center',
+      alignContent: 'center',
+      borderRadius: 25
    }, item: {
       width: 300,
       height: 100,

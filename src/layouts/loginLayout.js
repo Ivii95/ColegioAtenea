@@ -5,26 +5,38 @@ import Functions from '../functions/Functions'
 import * as G from '../functions/GLOBALES'
 import md5 from "react-native-md5";
 
-const login = (props) => {
-    profesores = () => {
 
-        if ('alumno' == userName && '1234' == passWord) {
-            Functions.login(G.ALUMNO);
-        } else if ('padres' == userName && '1234' == passWord) {
-            Functions.login(G.PADRES);
-        } else {
-            for (const datos of dataProfesores) {
-                let passMD5=md5.hex_md5(passWord)
+const login = (props) => {
+    acceso = () => {
+        //Aqui comprobamos quien se esta logueando y sacamos los datos del usuario si coincide.
+        if (G.SELECCION == G.PROFESOR) {
+            //PROFESOR
+            for (const datos of data) {
+                let passMD5 = md5.hex_md5(passWord)
                 if (datos.usuario == userName && datos.clave == passMD5) {
                     G.ID = datos.id
-                    G.NAME = datos.nombre +' '+ datos.apellidos
+                    G.NAME = datos.nombre + ' ' + datos.apellidos
                     Functions.login(G.PROFESOR);
                 }
             }
+        } else {
+            //ALUMNO Y PADRES
+            for (const datos of data) {
+                if (datos.usuario == userName && datos.clave == passWord) {
+                    G.ID = datos.id
+                    G.NAME = datos.nombre + ' ' + datos.apellidos
+                    if (G.SELECCION == G.ALUMNO) {
+                        Functions.login(G.ALUMNO);
+                    } else {
+                        Functions.login(G.PADRES);
+                    }
+                }
+            }
         }
-    }
 
-    const dataProfesores = props.data
+
+    }
+    const data = props.data
     const [log, setLog] = useState('');
     const [userName, setUserName] = useState('');
     const [passWord, setPassWord] = useState('');
@@ -33,6 +45,9 @@ const login = (props) => {
             <View style={{ marginVertical: 20 }}>
                 <Text style={styles.negrita}>Bienvenido</Text>
             </View>
+            {
+                //USUARIO
+            }
             <Text style={styles.textos}>Usuario:</Text>
             <TextInput
                 inlineImageLeft='search_icon'
@@ -41,6 +56,9 @@ const login = (props) => {
                 placeholder='Usuario...'
                 textContentType='username'
             />
+            {
+                //CONTRASEÑA
+            }
             <Text style={styles.textos}>Contraseña:{md5.hex_md5(passWord)}</Text>
             <TextInput
                 inlineImageLeft='search_icon'
@@ -54,7 +72,7 @@ const login = (props) => {
                 <Button
                     title="Acceder"
                     onPress={() => {
-                        profesores()//Functions.login({ username: userName, password: passWord }) //username={userName} password={passWord} />
+                        acceso()//Functions.login({ username: userName, password: passWord }) //username={userName} password={passWord} />
                     }}
                 />
                 <Text>{log}</Text>
