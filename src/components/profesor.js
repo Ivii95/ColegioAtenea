@@ -22,12 +22,13 @@ class Body extends Component {
         }
     }
     render() {
-        let username,message,items = this.state
+        let username = this.state.username
+        let Items = this.state.Items
+
         return (
             <ContainerLayout
                 username={username}
-                message={message}
-                Items={items}
+                Items={Items}
             />
         )
     }

@@ -1,18 +1,31 @@
 //Aqui definimos las variables globales de la aplicacion.
 //Los que tienen "const" son constantes y no se pueden cambiar.
 //Los que se definen como "var" se les puede añadir un dato en ejecucion.
-export const PADRES = 'Padres'
-export const ALUMNO = 'Alumno'
-export const PROFESOR = 'Profesor'
+//CONSTANTES
+export const PADRES = 'Padres';
+export const ALUMNO = 'Alumno';
+export const PROFESOR = 'Profesor';
+export const MOSTRAR_PADRES = 'Mostrar_Padres';
+export const MOSTRAR_ALUMNO = 'Mostrar_Alumno';
+export const MOSTRAR_PROFESOR = 'Mostrar_Profesor';
+
 
 //VARIABLES SESION
-export var ID = 'id'
+export var ID_ALUMNO = ''
+export var ID_PADRE = ''
+export var ID_PROFESOR = ''
+export var USERNAME = ''
 export var NAME = 'name'
 export var SELECCION = 'user'
 
 
 //URL DE LAS DIRECCIONES DEL SERVIDOR
-export const URL_BASE = "http://localhost/atenea/"
-export const DB_PROFESOR = URL_BASE + 'config.php?opcion=Profesor'
-export const DB_ALUMNO = URL_BASE + 'config.php?opcion=Alumno'
-export const DB_PADRES = URL_BASE + 'config.php?opcion=Padres'
+export const IP_ = "192.168.0.223"
+export const URL_BASE = "http://" + IP_ +"/atenea/"
+export const DB_PROFESOR = URL_BASE + 'config.php?opcion=' + PROFESOR
+export const DB_ALUMNO = URL_BASE + 'config.php?opcion=' + ALUMNO
+export const DB_PADRES = URL_BASE + 'config.php?opcion=' + PADRES
+//SELECTORES DE USUARIO
+export const SELECT_ALUMNO = URL_BASE + 'config.php?opcion=' + ALUMNO + '&id=' + ID_ALUMNO
+export const SELECT_PADRES = URL_BASE + 'config.php?opcion=' + PADRES + '&id=' + ID_PADRE
+export const SELECT_PROFESOR = URL_BASE + 'config.php?opcion=' + PROFESOR + '&id=' + ID_PROFESOR

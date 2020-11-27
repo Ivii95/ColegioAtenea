@@ -14,7 +14,7 @@ function Header(props) {
                 </TouchableHighlight>
             </View>
             <View style={styles.headerBot}>
-                <Text style={styles.tituloamarillo}>Bienvenido {props.text}</Text>
+                <Text style={styles.tituloamarillo}>{props.text}</Text>
             </View>
         </View>
     )

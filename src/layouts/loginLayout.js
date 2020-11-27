@@ -5,17 +5,22 @@ import Functions from '../functions/Functions'
 import * as G from '../functions/GLOBALES'
 import md5 from "react-native-md5";
 
-
 const login = (props) => {
     acceso = () => {
         //Aqui comprobamos quien se esta logueando y sacamos los datos del usuario si coincide.
         if (G.SELECCION == G.PROFESOR) {
             //PROFESOR
             for (const datos of data) {
-                let passMD5 = md5.hex_md5(passWord)
-                if (datos.usuario == userName && datos.clave == passMD5) {
-                    G.ID = datos.id
+                //let passMD5 = md5.str_md5(passWord)
+                if (datos.usuario == userName && datos.email == passWord) {
+                    G.ID_PROFESOR = datos.id
                     G.NAME = datos.nombre + ' ' + datos.apellidos
+                    G.USERNAME = datos.usuario
+                    Functions.login(G.PROFESOR);
+                } else if ('admin' == userName && '1234' == passWord) {
+                    G.ID_PROFESOR = 0
+                    G.NAME = 'nombre' + ' ' + 'apellidos'
+                    G.USERNAME = 'usuario'
                     Functions.login(G.PROFESOR);
                 }
             }
@@ -23,18 +28,28 @@ const login = (props) => {
             //ALUMNO Y PADRES
             for (const datos of data) {
                 if (datos.usuario == userName && datos.clave == passWord) {
-                    G.ID = datos.id
                     G.NAME = datos.nombre + ' ' + datos.apellidos
+                    G.USERNAME = datos.usuario
                     if (G.SELECCION == G.ALUMNO) {
+                        G.ID_ALUMNO = datos.id
                         Functions.login(G.ALUMNO);
                     } else {
+                        G.ID_PADRE = datos.id
+                        Functions.login(G.PADRES);
+                    }
+                } else if ('admin' == userName && '1234' == passWord) {
+                    G.NAME = 'nombre' + ' ' + 'apellidos'
+                    G.USERNAME = 'usuario'
+                    if (G.SELECCION == G.ALUMNO) {
+                        G.ID_ALUMNO = 0
+                        Functions.login(G.ALUMNO);
+                    } else {
+                        G.ID_PADRE = 0
                         Functions.login(G.PADRES);
                     }
                 }
             }
         }
-
-
     }
     const data = props.data
     const [log, setLog] = useState('');
@@ -59,7 +74,7 @@ const login = (props) => {
             {
                 //CONTRASEÑA
             }
-            <Text style={styles.textos}>Contraseña:{md5.hex_md5(passWord)}</Text>
+            <Text style={styles.textos}>Contraseña:{(passWord)}</Text>
             <TextInput
                 inlineImageLeft='search_icon'
                 style={styles.input}

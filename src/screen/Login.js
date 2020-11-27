@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, } from 'react-native'
+import { View } from 'react-native'
 //SMART COMPONENTS
 import Header from '../components/header';
 //Nos aseguramos de que el componente al que acceda sea el de login.
@@ -71,7 +71,7 @@ class Login extends Component {
         //Se crean los diferentes componentes Header, Body y Footer para mostrar la pagina.
         return (
             <View style={{ flex: 1 }}>
-                <Header text={G.SELECCION} />
+                <Header text={'Bienvenido '+G.SELECCION} />
                 {
                     //Datos para Body
                 }

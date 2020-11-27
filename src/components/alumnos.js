@@ -4,8 +4,10 @@ class Body extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: props.username,
-            loading: false,
+            name: props.name,
+            curso: props.curso,
+            tutor: props.tutor,
+            tutoria: props.tutoria,
             Items: [
                 {
                     id: '1',
@@ -16,31 +18,35 @@ class Body extends Component {
                     id: '2',
                     title: 'Ejercicios, Examenes',
                     url: require('../img/SeguimientoEducativo.png'),
-                }, {
+                },
+                {
                     id: '3',
-                    title: 'Ejercicios, Examenes',
+                    title: 'Evaluaciones',
                     url: require('../img/evaluaciones.png'),
-                }, {
+                },
+                {
                     id: '4',
-                    title: 'Ejercicios, Examenes',
+                    title: 'Horarios',
                     url: require('../img/Horarios.png'),
                 }
             ]
         }
     }
+
     render() {
-        let username = this.state.username
-        let message = this.state.message
+        //Se definenen las variables del componente para generarlo.
+        let name = this.state.name
+        let cursos = this.state.curso
+        let tutor = this.state.tutor
+        let tutorias = this.state.tutorias
         let Items = this.state.Items
         return (
             <AlumnoLayout
                 Items={Items}
-                username={username}
-                message={message}
-                name='Alberto Sanguino Acedo'
-                curso='S3A'
-                tutor='Juan Carlos Merchán Salas'
-                tutorias='Miércoles, de 08:20 - 09:15 h.'
+                name={name}
+                curso={cursos}
+                tutor={tutor}
+                tutorias={tutorias}
             />
         )
     }

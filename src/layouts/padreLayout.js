@@ -4,26 +4,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../css/main'
 import * as RootNavigation from '../functions/RootNavigation.js';
 
-
-const ItemA = ({ title }) => (
-    <TouchableHighlight onPress={() => RootNavigation.navigate('Alumno', title)}>
-        <Text style={styles.tituloamarillo}>Hijo: {title}</Text>
-    </TouchableHighlight>
-);
-const Item = ({ url }) => (
-    <TouchableHighlight>
-        <ImageBackground source={url} style={styles.colBot} >
-        </ImageBackground>
-    </TouchableHighlight>
-);
 function body(props) {
-    const renderItem = ({ item }) => (
-        item.ide === 'hijo' ? <ItemA title={item.title} /> : <Item
-            item={item.url} />
+    const ItemA = ({ title }) => (
+        <View style={styles.item}>
+            <TouchableHighlight onPress={() => RootNavigation.navigate('Alumno', title)}>
+                <Text style={styles.tituloamarillo}>{title}</Text>
+            </TouchableHighlight>
+        </View>
     );
-
-    const [nombre, setNombre] = useState(props.name);
-    const curso = props.curso, tutor = props.tutor, tutorias = props.tutorias;
+    const Item = ({ url }) => (
+        <TouchableHighlight>
+            <ImageBackground source={url} style={styles.colBot} />
+        </TouchableHighlight>
+    );
+    const renderItem = ({ item }) => (
+        item.ide === 'funcion' ? <Item url={item.url} /> : <ItemA title={item.title} />
+    );
     return (
         <View style={styles.body}>
             <SafeAreaView style={styles.col}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, ImageBackground, TouchableHighlight, FlatList } from 'react-native'
+import { SafeAreaView, View, ImageBackground, TouchableHighlight, FlatList } from 'react-native'
 import styles from '../css/main'
 import Functions from '../functions/Functions'
 

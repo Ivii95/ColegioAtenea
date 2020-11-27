@@ -8,7 +8,7 @@ import Padres from './src/screen/Padres'
 import Profesor from './src/screen/Profesor'
 import Data from './src/screen/Data'
 import { navigationRef } from './src/functions/RootNavigation';
-import { View, Button, Text } from 'react-native';
+import { Text } from 'react-native';
 import * as G from './src/functions/GLOBALES'
 
 const Stack = createStackNavigator();
@@ -26,7 +26,7 @@ function AppNavigator() {
         >
             <Stack.Navigator
                 //Este parametro indica la ruta principal en la que empezaria el programa.
-                initialRouteName={G.PADRES}
+                initialRouteName='Seleccion'
                 //Esta opcion es para ocultar las rutas en la parte superior de la pantalla.
                 screenOptions={{
                     headerShown: false
