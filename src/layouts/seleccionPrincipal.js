@@ -9,7 +9,7 @@ function body(props) {
     }
     const Item = ({ url, title }) => (
         <TouchableHighlight onPress={() => acceso(title)}>
-            <ImageBackground source={url} style={styles.BotonesInicio}/>
+            <ImageBackground source={url} style={styles.BotonesInicio} />
         </TouchableHighlight>
     );
     const renderItem = ({ item }) => (
@@ -17,6 +17,7 @@ function body(props) {
     );
     const [nombre, setNombre] = useState(props.name);
     return (
+
         <View style={styles.body}>
             <SafeAreaView style={styles.col}>
                 <FlatList

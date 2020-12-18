@@ -3,11 +3,16 @@ import { SafeAreaView, View, Text, ImageBackground, TouchableHighlight, FlatList
 import { ScrollView } from 'react-native-gesture-handler';
 import styles from '../css/main'
 import * as RootNavigation from '../functions/RootNavigation.js';
+import * as G from '../functions/GLOBALES'
 
 function body(props) {
-    const ItemA = ({ title }) => (
+    redireccion = (id) => {
+        G.ID_ALUMNO = this.id;
+        RootNavigation.navigate('Alumno', id)
+    }
+    const ItemA = ({ id, title }) => (
         <View style={styles.item}>
-            <TouchableHighlight onPress={() => RootNavigation.navigate('Alumno', title)}>
+            <TouchableHighlight onPress={() => redireccion(id)}>
                 <Text style={styles.tituloamarillo}>{title}</Text>
             </TouchableHighlight>
         </View>
@@ -18,7 +23,7 @@ function body(props) {
         </TouchableHighlight>
     );
     const renderItem = ({ item }) => (
-        item.ide === 'funcion' ? <Item url={item.url} /> : <ItemA title={item.title} />
+        item.ide === 'funcion' ? <Item url={item.url} /> : <ItemA title={item.id, item.title} />
     );
     return (
         <View style={styles.body}>
@@ -26,7 +31,7 @@ function body(props) {
                 <FlatList
                     data={props.Hijos}
                     renderItem={renderItem}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.id.toString()}
                 />
             </SafeAreaView>
         </View>

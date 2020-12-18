@@ -4,10 +4,6 @@ class Body extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: props.name,
-            curso: props.curso,
-            tutor: props.tutor,
-            tutoria: props.tutoria,
             Items: [
                 {
                     id: '1',
@@ -34,19 +30,12 @@ class Body extends Component {
     }
 
     render() {
-        //Se definenen las variables del componente para generarlo.
-        let name = this.state.name
-        let cursos = this.state.curso
-        let tutor = this.state.tutor
-        let tutorias = this.state.tutorias
+        //Se definen las variables del componente para generarlo.
         let Items = this.state.Items
         return (
             <AlumnoLayout
                 Items={Items}
-                name={name}
-                curso={cursos}
-                tutor={tutor}
-                tutorias={tutorias}
+                data={this.props.data}
             />
         )
     }

@@ -20,6 +20,18 @@ class Profesor extends Component {
             footer: 'Usuario Profesor: ' + G.USERNAME,
         }
     }
+    async componentDidMount() {
+        console.log('Entra en: ' + G.SELECT_PROFESOR + G.ID_PROFESOR)
+        await fetch(G.SELECT_PROFESOR + G.ID_PROFESOR)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ data: data });
+            })
+            .catch((error) => console.error(error))
+            .finally(() => {
+                this.setState({ isLoading: false });
+            });
+    }
     render() {
         //Aqui se crea el componente y definimos las variables del constructor.
         let id = this.state.id

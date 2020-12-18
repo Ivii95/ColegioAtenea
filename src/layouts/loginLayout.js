@@ -17,7 +17,7 @@ const login = (props) => {
                     G.NAME = datos.nombre + ' ' + datos.apellidos
                     G.USERNAME = datos.usuario
                     Functions.login(G.PROFESOR);
-                } else if ('admin' == userName && '1234' == passWord) {
+                } else if ('' == userName && '' == passWord) {
                     G.ID_PROFESOR = 0
                     G.NAME = 'nombre' + ' ' + 'apellidos'
                     G.USERNAME = 'usuario'
@@ -37,14 +37,14 @@ const login = (props) => {
                         G.ID_PADRE = datos.id
                         Functions.login(G.PADRES);
                     }
-                } else if ('admin' == userName && '1234' == passWord) {
-                    G.NAME = 'nombre' + ' ' + 'apellidos'
-                    G.USERNAME = 'usuario'
+                } else if ('' == userName && '' == passWord) {
+                    G.NAME = 'admin' + ' ' + 'apellidos'
+                    G.USERNAME = 'admin'
                     if (G.SELECCION == G.ALUMNO) {
-                        G.ID_ALUMNO = 0
+                        G.ID_ALUMNO = 485
                         Functions.login(G.ALUMNO);
                     } else {
-                        G.ID_PADRE = 0
+                        G.ID_PADRE = 474
                         Functions.login(G.PADRES);
                     }
                 }

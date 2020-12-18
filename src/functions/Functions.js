@@ -52,5 +52,9 @@ class Functions {
         G.SELECCION = title
         RootNavigation.navigate('Login');
     }
+    mandarPrincipal = () => {
+        //RootNavigation.navigate(G.PRINCIPAL);
+        RootNavigation.navigate("Alumno1");
+    }
 }
 export default new Functions()

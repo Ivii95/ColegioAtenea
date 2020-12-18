@@ -10,19 +10,33 @@ class Padres extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [],
+            isLoading: true,
             id: G.ID_PADRE,
             header: G.NAME,
             footer: 'Usuario Padres: ' + G.USERNAME
         }
     }
+    async componentDidMount() {
+        console.log('Entra en: ' + G.SELECT_PADRES + G.ID_PADRE)
+        await fetch(G.SELECT_PADRES + G.ID_PADRE)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ data: data });
+            })
+            .catch((error) => console.error(error))
+            .finally(() => {
+                this.setState({ isLoading: false });
+            });
+    }
     render() {
-        let id = this.state.id
+        let data = this.state.data
         let header = this.state.header
         let footer = this.state.footer
         return (
             <View style={{ flex: 1 }}>
                 <Header text={header} />
-                <Body id={id} />
+                <Body data={data} />
                 <Footer footer={footer} />
             </View>
         );

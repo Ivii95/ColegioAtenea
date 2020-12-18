@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
-import { View, Text, ImageBackground, TouchableHighlight } from 'react-native'
+import { View, Text, ImageBackground, TouchableHighlight, Image } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
 import styles from '../css/main'
 
-const imagenAlumno = { uri: "https://colegioatenea.es/atenea/admin/imagenesAlumnos/485/485.JPG" };
+//const imagenAlumno = { uri: "https://colegioatenea.es/atenea/admin/imagenesAlumnos/485/485.JPG" };
 
 
 function body(props) {
     const Item = ({ url, title }) => (
-
         <TouchableHighlight onPress={() => setNombre(title)}>
-            <ImageBackground source={url} style={styles.colBot} >
+            <ImageBackground source={url} style={styles.colBot}>
             </ImageBackground>
             {/*<Text style={styles.tituloamarillo}>{title}</Text>*/}
         </TouchableHighlight>
@@ -19,17 +18,20 @@ function body(props) {
         <Item url={item.url} title={item.title} />
     );
     const [nombre, setNombre] = useState(props.name);
-    const curso = props.curso, tutor = props.tutor, tutorias = props.tutorias;
+    const urlimagen = props.data.urlimagen;
     return (
         <View style={styles.body}>
             <View style={styles.row}>
-                <ImageBackground source={imagenAlumno} style={styles.colFoto}>
-                </ImageBackground>
+                <Image resizeMode="stretch" source={
+                    urlimagen
+                        ? {uri:urlimagen}
+                        : require('../img/Logotipo-ATENEA.png')
+                } style={styles.colFoto} />
                 <View style={styles.colTop}>
-                    <Text>Nombre: {nombre}</Text>
-                    <Text>Curso: {curso}</Text>
-                    <Text>Tutor: {tutor}</Text>
-                    <Text>Tutorias: {tutorias}</Text>
+                    <Text>Nombre: {props.data.nombre}</Text>
+                    <Text>Curso: {props.data.curso}</Text>
+                    <Text>Tutor: {props.data.tutor}</Text>
+                    <Text>Tutorias: {props.data.horatutoria}</Text>
                 </View>
             </View>
             <View style={styles.col}>

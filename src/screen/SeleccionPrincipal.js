@@ -27,7 +27,8 @@ class SeleccionPrincipal extends Component {
             <View style={{ flex: 1 }}>
                 <Header />
                 <Body/>
-                <Footer footer={'Aplicaciones-NT'} />
+                <Footer footer={'Proyecto cofinanciado por TIC Camara'} />
+    
             </View>
         );
     }

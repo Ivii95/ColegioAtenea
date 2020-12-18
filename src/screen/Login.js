@@ -25,7 +25,6 @@ class Login extends Component {
                 await fetch(G.DB_ALUMNO)
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data)
                         this.setState({ data: data });
                     })
                     .catch((error) => console.error(error))
@@ -38,7 +37,6 @@ class Login extends Component {
                 await fetch(G.DB_PADRES)
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data)
                         this.setState({ data: data });
                     })
                     .catch((error) => console.error(error))

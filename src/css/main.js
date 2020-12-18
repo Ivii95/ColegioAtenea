@@ -72,10 +72,10 @@ export default StyleSheet.create({
       alignContent: 'center'
    }, colFoto: {
       flex: 1,
-      height: '95%',
+      height: 160,
+      width: 100,
       marginTop: 5,
-      marginHorizontal: '2%',
-      textAlign: 'center'
+      marginHorizontal: '2%'
    }, colTop: {
       flex: 2,
       height: '90%',
@@ -97,6 +97,15 @@ export default StyleSheet.create({
       alignContent: 'center',
       borderRadius: 25
    }, BotonesInicio: {
+      flex: 1,
+      width: 290,
+      height: 160,
+      marginVertical: 10,
+      marginHorizontal: 10,
+      alignItems: 'center',
+      alignContent: 'center',
+      borderRadius: 25
+   }, ImagenInicio: {
       flex: 1,
       width: 290,
       height: 160,

@@ -11,14 +11,13 @@ class Alumno extends Component {
         this.state = {
             data: [],
             isLoading: true,
-            id: G.ID_ALUMNO,
             header: G.NAME,
             footer: 'Usuario Alumno: ' + G.USERNAME
-        }
+        };
     }
     async componentDidMount() {
-        console.log('Entra en: ' + G.SELECT_ALUMNO)
-        await fetch(G.SELECT_ALUMNO)
+        console.log('Entra en: ' + G.SELECT_ALUMNO + G.ID_ALUMNO)
+        await fetch(G.SELECT_ALUMNO + G.ID_ALUMNO)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
@@ -31,20 +30,12 @@ class Alumno extends Component {
     }
     render() {
         const data = this.state.data
-        const isLoading = this.state.isLoading
-        let id = this.state.id
         let header = this.state.header
         let footer = this.state.footer
         return (
             <View style={{ flex: 1 }}>
                 <Header text={header} />
-                <Body
-                    id={id}
-                    name={G.NAME}
-                    curso='S3A'
-                    tutor='Juan Carlos Merchán Salas'
-                    tutorias='Miércoles, de 08:20 - 09:15 h.'
-                />
+                <Body data={data} />
                 <Footer footer={footer} />
             </View>
         );
