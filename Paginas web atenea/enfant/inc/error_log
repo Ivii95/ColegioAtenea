@@ -1,0 +1,5 @@
+[30-Oct-2018 09:02:05 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/tiendages/public_html/colegio/wordpress/wp-content/themes/enfant/inc/loginatenea.php on line 75
+[30-Oct-2018 09:02:12 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/tiendages/public_html/colegio/wordpress/wp-content/themes/enfant/inc/loginatenea.php on line 75
+[30-Oct-2018 09:04:18 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/tiendages/public_html/colegio/wordpress/wp-content/themes/enfant/inc/loginatenea.php on line 75
+[30-Oct-2018 09:04:48 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/tiendages/public_html/colegio/wordpress/wp-content/themes/enfant/inc/loginatenea.php on line 17
+[30-Oct-2018 09:10:38 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/tiendages/public_html/colegio/wordpress/wp-content/themes/enfant/inc/loginatenea.php on line 17

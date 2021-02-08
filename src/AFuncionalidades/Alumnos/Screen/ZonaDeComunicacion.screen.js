@@ -13,6 +13,7 @@ class Screen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [],
             //Cogemos el id y el nombre de las variables globales que hemos cogido al registrarse.
             id: G.ID_PROFESOR,
             header: G.NAME,
@@ -40,9 +41,9 @@ class Screen extends Component {
             //Despues añadimos el Header el Body y el Footer.
             //Pasamos el ID al body para que se pueda avisar a la base de datos para coger los datos de ese profesor.
             <View style={{ flex: 1 }}>
-                <Header text={'Zona de Comunicacion'} />
-                <Body data={this.state.data}/>
-                <Footer footer={G.NAME} />
+                <Header text={header} />
+                <Body data={this.state.data} />
+                <Footer footer={footer} />
             </View>
         );
     }

@@ -31,7 +31,7 @@ function AppNavigator() {
         >
             <Stack.Navigator
                 //Este parametro indica la ruta principal en la que empezaria el programa.
-                initialRouteName='Alumno1'
+                initialRouteName='TIC'
                 //Esta opcion es para ocultar las rutas en la parte superior de la pantalla.
                 screenOptions={{
                     headerShown: false

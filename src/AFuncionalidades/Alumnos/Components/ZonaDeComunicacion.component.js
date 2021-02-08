@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View,ScrollView } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import ContainerLayout from '../Layouts/ZonaDeComunicacion.layout'
 import * as G from '../../../functions/GLOBALES'
@@ -8,34 +8,35 @@ class Body extends Component {
     super(props);
     this.state = {
       data: props.data,
-      tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
+      tableHead: ['Nombre','Examenes y Tareas','Evaluaciones'],
       tableData: [
-        ['1', '2', '3', '4'],
-        ['a', 'b', 'c', 'd'],
-        ['1', '2', '3', '456\n789'],
-        ['a', 'b', 'c', 'd']
+        ['Álvarez Gómez, Irene','Ver','Ver'],
+        ['Bonilla Naranjo, Benito','Ver','Ver'],
+        ['Calamonte Retamal, Guadalupe','Ver','Ver']
       ]
     }
   }
   renderRow() {
     return (
-      <Row data={state.tableHead} style={styles.text} textStyle={styles.text} />
+      tableData.add['a', 'b', 'c', 'd']
     );
   }
   render() {
-    const state = this.state;
+    //const state = this.state;
     return (
       <View style={styles.container}>
-        <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-          <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
-          <Rows data={state.data} textStyle={styles.text} />
-        </Table>
+        <ScrollView>
+          <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+            <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text} />
+            <Rows data={this.state.data} textStyle={styles.text} />
+          </Table>
+        </ScrollView>
       </View>
     )
   }
 }
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  container: { flex: 3, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#f1f8ff' },
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, backgroundColor: '#f6f8fa' },
