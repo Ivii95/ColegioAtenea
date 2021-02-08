@@ -53,14 +53,14 @@ switch ($opcion) {
                 }
             }
         }
-        $alumno->urlimagen = "https://colegioatenea.es/atenea/admin/imagenesAlumnos/" . $alumno->id . "/". $alumno->id . ".JPG" ;
+        $alumno->urlimagen = "https://colegioatenea.es/atenea/admin/imagenesAlumnos/" . $alumno->id . "/" . $alumno->id . ".JPG";
         break;
     case MOSTRAR_PADRES:
         $hijos = array();
-        $hijos[4]['id']=10;
-        $hijos[4]['ide']='hijo';
-        $hijos[4]['title']='ADMIN';
-        $hijos[4]['url']='url';
+        $hijos[4]['id'] = 10;
+        $hijos[4]['ide'] = 'hijo';
+        $hijos[4]['title'] = 'ADMIN';
+        $hijos[4]['url'] = 'url';
         $padre = new Padre($id);
         $rsPadre = mysqli_query($conn, "SELECT * from " . TABLA_PADRES . " WHERE id= " . $padre->id);
         if ($rsPadre) {
@@ -82,10 +82,10 @@ switch ($opcion) {
                 if ($rsAlumno) {
                     $i = 5;
                     while ($filaAlumno = mysqli_fetch_assoc($rsAlumno)) {
-                        $hijos[$i]['id']=$filaAlumno["id"];
-                        $hijos[$i]['ide']='hijo';
-                        $hijos[$i]['title']=$filaAlumno["nombre"];
-                        $hijos[$i]['url']='url';
+                        $hijos[$i]['id'] = $filaAlumno["id"];
+                        $hijos[$i]['ide'] = 'hijo';
+                        $hijos[$i]['title'] = $filaAlumno["nombre"];
+                        $hijos[$i]['url'] = 'url';
                         $padre->Alumnos = $hijos;
                         $i++;
                         //echo $padre->Alumnos . "|" . $alumno;
@@ -109,7 +109,60 @@ switch ($opcion) {
             }
         }
         break;
-    case '':
+    case MOSTRAR_ALUMNO_COMUNICACION:
+        $alumno = new Alumno($id);
+        $rsAlumno = mysqli_query($conn, "SELECT * from " . TABLA_ALUMNO . " WHERE id= " . $alumno->id);
+        if ($rsAlumno) {
+            $filaAlumno = mysqli_fetch_assoc($rsAlumno);
+            $alumno->nombre = $filaAlumno["nombre"] . " " . $filaAlumno["apellidos"];
+            //CURSOS
+            $rsCurso = mysqli_query($conn, "SELECT * from " . TABLA_CURSOS . " WHERE id= " . $filaAlumno["cursos"]);
+            $filaCurso = mysqli_fetch_assoc($rsCurso);
+            $alumno->curso = $filaCurso["curso"];
+            //TUTORIAS
+            $rsTutor = mysqli_query($conn, "SELECT * from " . TABLA_TUTORIAS . " WHERE idCurso= " . $filaAlumno["cursos"]);
+            $filaTutor = mysqli_fetch_assoc($rsTutor);
+            $colTutor = mysqli_num_rows($rsTutor);
+            //Entra en el bucle
+            if ($colTutor > 0) {
+                $rsProfesor = mysqli_query($conn, "SELECT * from " . TABLA_PROFESORES . " WHERE id= " . $filaTutor["idProfesor"]);
+                if ($rsProfesor) {
+                    $filaProfesor = mysqli_fetch_assoc($rsProfesor);
+                    $alumno->tutor = $filaProfesor["nombre"] . " " . $filaProfesor["apellidos"];
+                    $alumno->horatutoria = $filaTutor["texto"];
+                }
+            }
+        }
+        $rsComunicaciones = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONES . " WHERE curso= " . $filaAlumno["cursos"] . "'order by fecha desc;");
+        $filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones);
+        $colComunicaciones = mysqli_num_rows($rsComunicaciones);
+        $rsComunicacionesesp = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONESP . " WHERE alumno= " . $alumno->id . "'order by fecha desc;");
+        $filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones);
+        $colComunicaciones = mysqli_num_rows($rsComunicaciones);
+        do {
+            $matriz[] = $filaComunicaciones["id"];
+        } while ($filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones));
+        if ($colsComunicaciones > 0 && $colsComunicacionesp == 0) {
+            $matrizFinal = $matriz;
+        } elseif ($colsComunicacionesp > 0 && $colsComunicaciones == 0) {
+            $matrizFinal = $matrizp;
+        }
+        $cuenta = count($matrizFinal);
+        if ($cuenta > 0) {
+            for ($i = 0; $i < $cuenta; $i++) {
+                $st = strlen($matrizFinal[$i]);
+                $detectar = substr($matrizFinal[$i], $st - 1, 1);
+                if ($detectar != "p") {
+                    $rsA = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
+                    $filaA = $bd->fil($rsA);
+                    $colA = $bd->col($rsA);
+                    if ($colA > 0) {
+                        $listado = new Comunicaciones();
+                        
+                    }
+                }
+            }
+        }
         break;
     case '':
         break;
@@ -132,7 +185,7 @@ if (isset($padre)) {
 
     //Pregunto si la consulta es correcta.
     if ($rs) {
-        //Hago ciclo "mientras" para obtener los datos ""mientras" la consulta exista, importante que sea por assoc, ya que solo te devuelve una forma de parametro
+        //Hago ciclo "mientras" para obtener los datos "mientras" la consulta exista, importante que sea por assoc, ya que solo te devuelve una forma de parametro
         while ($fila = mysqli_fetch_assoc($rs)) {
             //Guardo los resultados mapeados en el array creado
             //$item = $fila;

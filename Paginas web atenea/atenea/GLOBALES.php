@@ -8,7 +8,10 @@ const MOSTRAR_PADRES = 'Mostrar_Padres';
 const MOSTRAR_ALUMNO = 'Mostrar_Alumno';
 const MOSTRAR_PROFESOR = 'Mostrar_Profesor';
 const COMPROBAR_PROFESOR = 'Comprobar_Profesor';
-
+const MOSTRAR_ALUMNO_COMUNICACION= 'Mostrar_Alumno_Comunicacion';
+const MOSTRAR_ALUMNO_SEGUIMIENTO= 'Mostrar_Alumno_Seguimiento';
+const MOSTRAR_ALUMNO_EVALUACION= 'Mostrar_Alumno_Evaluacion';
+const MOSTRAR_ALUMNO_HORARIO= 'Mostrar_Alumno_Horario';
 //TABLAS DB
 const TABLA_AGENDA = 'agenda';
 const TABLA_ALUMNO = 'alumnos';
