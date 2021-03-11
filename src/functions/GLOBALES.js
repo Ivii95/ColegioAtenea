@@ -9,10 +9,11 @@ export const PRINCIPAL = 'Seleccion';
 export const MOSTRAR_PADRES = 'Mostrar_Padres';
 export const MOSTRAR_ALUMNO = 'Mostrar_Alumno';
 export const MOSTRAR_PROFESOR = 'Mostrar_Profesor';
+export const MOSTRAR_ALUMNO_COMUNICACION = 'Mostrar_Alumno_Comunicacion';
 
 
 //VARIABLES SESION
-export var ID_ALUMNO = ''
+export var ID_ALUMNO = '485'
 export var ID_PADRE = ''
 export var ID_PROFESOR = ''
 export var USERNAME = ''
@@ -21,7 +22,7 @@ export var SELECCION = 'user'
 
 
 //URL DE LAS DIRECCIONES DEL SERVIDOR
-export const IP_ = "192.168.0.206"
+export const IP_ = "192.168.0.18"
 export const URL_BASE = "http://" + IP_ + "/atenea/"
 export const DB_PROFESOR = URL_BASE + 'config.php?opcion=' + PROFESOR
 export const DB_ALUMNO = URL_BASE + 'config.php?opcion=' + ALUMNO
@@ -30,3 +31,4 @@ export const DB_PADRES = URL_BASE + 'config.php?opcion=' + PADRES
 export const SELECT_ALUMNO = URL_BASE + 'config.php?opcion=' + MOSTRAR_ALUMNO + '&id='
 export const SELECT_PADRES = URL_BASE + 'config.php?opcion=' + MOSTRAR_PADRES + '&id='
 export const SELECT_PROFESOR = URL_BASE + 'config.php?opcion=' + MOSTRAR_PROFESOR + '&id=' 
+export const SELECT_ALUMNO_COMUNICACIONES = URL_BASE + 'config.php?opcion=' + MOSTRAR_ALUMNO_COMUNICACION + '&id='

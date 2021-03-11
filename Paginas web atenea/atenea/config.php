@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 include_once('GLOBALES.php');
 include_once('DBConfig.php');
 include_once('Objetos.php');
-//Realizo función de conexión a la base de datos
+header('Content-Type: application/json;');
 
 
 //Obtengo la opción que elegí cuando hago el llamado en React-Native, puedes usar un "isset" si fuera el caso
@@ -111,6 +111,7 @@ switch ($opcion) {
         break;
     case MOSTRAR_ALUMNO_COMUNICACION:
         $alumno = new Alumno($id);
+        $Comunicaciones = array();
         $rsAlumno = mysqli_query($conn, "SELECT * from " . TABLA_ALUMNO . " WHERE id= " . $alumno->id);
         if ($rsAlumno) {
             $filaAlumno = mysqli_fetch_assoc($rsAlumno);
@@ -153,23 +154,32 @@ switch ($opcion) {
                 $st = strlen($matrizFinal[$i]);
                 $detectar = substr($matrizFinal[$i], $st - 1, 1);
                 if ($detectar != "p") {
-                    $rsA = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
-                    $filaA = $bd->fil($rsA);
-                    $colA = $bd->col($rsA);
+                    $rsW = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
+                    $filaW = $bd->fil($rsW);
                     if ($colA > 0) {
-                        $listado = new Comunicaciones();
-                        
+                        $comunicacion = new Comunicacion($filaA["id"]);
+                        $rsW = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
+                        $filaW = $bd->fil($rsA);
+                        $comunicacion->fecha = $filaA["fecha"];
+                        $comunicacion->materia = $filaA["materia"];
+                        $comunicacion->asignatura = $filaA["asignatura"];
+                        $comunicacion->url = "https://colegioatenea.es/zona-padres/zona-padres-2/comunicaciones-ampliada-padre?nm=" . $matrizFinal[$i];
+                        $comunicacion->titulo = $filaA["titulo"];
+                        $comunicacion->profesor = $filaW["nombre"] . " " . $filaW["apellidos"];
+                        $Comunicaciones[] = $comunicacion;
                     }
                 }
             }
         }
+        $res = json_encode($Comunicaciones, JSON_NUMERIC_CHECK);
+        echo $res;
         break;
     case '':
         break;
 }
 
 
-header('Content-Type: application/json;');
+
 
 //Imprimo la variable con el array codificado y con el null, según sea el caso.
 if (isset($padre)) {
@@ -177,6 +187,7 @@ if (isset($padre)) {
 } else if (isset($alumno)) {
     $res = json_encode($alumno, JSON_NUMERIC_CHECK);
 } else {
+
     //Realizo la consulta
     $rs = mysqli_query($conn, $sql);
 
@@ -200,9 +211,9 @@ if (isset($padre)) {
         $res = null;
         echo mysqli_error($conn);
     }
-
-    //Cierro la consulta
-    mysqli_close($conn);
 }
+//Cierro la consulta
+mysqli_close($conn);
+
 //Hago que el archivo PHP (si lo necesito abrir para hacer pruebas) me lo devuelva como json
 echo $res;

@@ -1,14 +1,21 @@
 import React from 'react'
-import { View, StyleSheet, Table, Row, TableWrapper, Col, Rows } from 'react-native'
+import { View, StyleSheet, Table, Row, TableWrapper, Col, Rows, Text, FlatList } from 'react-native'
 //import styless from '../../../css/main'
 
-function ContainerLayout(state) {
+function ContainerLayout(props) {
+    const renderItem = ({ item }) => (
+        <View style={styles.row}>
+            <Text>Feo{item.titulo}</Text>
+        </View>
+    );
     return (
-        <View style={styles.container}>
-                <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-                    <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
-                    <Rows data={state.tableData} textStyle={styles.text} />
-                </Table>
+        <View style={styles.col}>
+            <Text>Feo{props.data.titulo}</Text>
+            <FlatList
+                data={props.data}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+            />
         </View>
     )
 }

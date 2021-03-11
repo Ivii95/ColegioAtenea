@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View,ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import ContainerLayout from '../Layouts/ZonaDeComunicacion.layout'
 import * as G from '../../../functions/GLOBALES'
@@ -7,13 +7,7 @@ class Body extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data,
-      tableHead: ['Nombre','Examenes y Tareas','Evaluaciones'],
-      tableData: [
-        ['Álvarez Gómez, Irene','Ver','Ver'],
-        ['Bonilla Naranjo, Benito','Ver','Ver'],
-        ['Calamonte Retamal, Guadalupe','Ver','Ver']
-      ]
+      data: props.data
     }
   }
   renderRow() {
@@ -22,16 +16,11 @@ class Body extends Component {
     );
   }
   render() {
-    //const state = this.state;
+    const state = this.state;
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-            <Row data={this.state.tableHead} style={styles.head} textStyle={styles.text} />
-            <Rows data={this.state.data} textStyle={styles.text} />
-          </Table>
-        </ScrollView>
-      </View>
+      <ContainerLayout
+        data={state.data}
+      />
     )
   }
 }

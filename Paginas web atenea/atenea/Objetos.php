@@ -25,3 +25,17 @@ class Padre
         $this->id = $id;
     }
 }
+class Comunicacion
+{
+    public $id;
+    public $fecha;
+    public $materia;
+    public $asignatura;
+    public $url;
+    public $titulo;
+    public $profesor;
+    function __construct($id)
+    {
+        $this->id = $id;
+    }
+}

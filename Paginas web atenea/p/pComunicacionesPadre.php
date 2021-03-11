@@ -152,7 +152,6 @@ if($cuenta>0){
                 $cn=$filaW["nombre"]." ".$filaW["apellidos"];
                 $listado.="<td class='tabla_seg'>".$cn."</td>";
                 $listado.="</tr>";
-              
             }
         }else{
             $makeA=$bd->query("select * from comunicacionesp where id='".$matrizFinal[$i]."';");

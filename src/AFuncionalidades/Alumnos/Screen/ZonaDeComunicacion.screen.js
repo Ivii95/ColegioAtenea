@@ -21,8 +21,8 @@ class Screen extends Component {
         }
     }
     async componentDidMount() {
-        console.log('Entra en: ' + G.DB_PROFESOR)
-        await fetch(G.DB_PROFESOR)
+        console.log('Entra en: ' + G.SELECT_ALUMNO_COMUNICACIONES+ G.ID_ALUMNO)
+        await fetch(G.SELECT_ALUMNO_COMUNICACIONES + G.ID_ALUMNO)
             .then((response) => response.json())
             .then((data) => {
                 this.setState({ data: data });
