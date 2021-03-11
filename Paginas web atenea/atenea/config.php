@@ -11,6 +11,8 @@ header('Content-Type: application/json;');
 $opcion = $_GET["opcion"];
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
+} else {
+    $id = 1;
 }
 if (isset($_GET["user"])) {
     $user = $_GET["user"];
@@ -54,6 +56,7 @@ switch ($opcion) {
             }
         }
         $alumno->urlimagen = "https://colegioatenea.es/atenea/admin/imagenesAlumnos/" . $alumno->id . "/" . $alumno->id . ".JPG";
+        $res = json_encode($alumno, JSON_NUMERIC_CHECK);
         break;
     case MOSTRAR_PADRES:
         $hijos = array();
@@ -94,6 +97,7 @@ switch ($opcion) {
             } else {
             }
         }
+        $res = json_encode($padre, JSON_NUMERIC_CHECK);
         break;
     case MOSTRAR_PROFESOR:
         $sql = "SELECT * from " . TABLA_PROFESORES . " WHERE id=" . $id;
@@ -134,60 +138,57 @@ switch ($opcion) {
                 }
             }
         }
-        $rsComunicaciones = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONES . " WHERE curso= " . $filaAlumno["cursos"] . "'order by fecha desc;");
+        $rsComunicaciones = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONES . " WHERE curso= '" . $filaAlumno["cursos"] . "'order by fecha desc;");
         $filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones);
         $colComunicaciones = mysqli_num_rows($rsComunicaciones);
-        $rsComunicacionesesp = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONESP . " WHERE alumno= " . $alumno->id . "'order by fecha desc;");
-        $filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones);
-        $colComunicaciones = mysqli_num_rows($rsComunicaciones);
-        do {
+        $rsComunicacionesesp = mysqli_query($conn, "SELECT * from " . TABLA_COMUNICACIONESP . " WHERE alumno= '" . $alumno->id . "'order by fecha desc;");
+        $filaComunicacionesesp = mysqli_fetch_assoc($rsComunicaciones);
+        $colComunicacionesp = mysqli_num_rows($rsComunicaciones);
+        while ($filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones)) {
             $matriz[] = $filaComunicaciones["id"];
-        } while ($filaComunicaciones = mysqli_fetch_assoc($rsComunicaciones));
-        if ($colsComunicaciones > 0 && $colsComunicacionesp == 0) {
+        }
+        if ($colComunicaciones > 0 && $colComunicacionesp == 0) {
             $matrizFinal = $matriz;
-        } elseif ($colsComunicacionesp > 0 && $colsComunicaciones == 0) {
+        } elseif ($colComunicacionesp > 0 && $colComunicaciones == 0) {
             $matrizFinal = $matrizp;
         }
-        $cuenta = count($matrizFinal);
+        $cuenta = count($matriz);
         if ($cuenta > 0) {
             for ($i = 0; $i < $cuenta; $i++) {
-                $st = strlen($matrizFinal[$i]);
-                $detectar = substr($matrizFinal[$i], $st - 1, 1);
+                $st = strlen($matriz[$i]);
+                $detectar = substr($matriz[$i], $st - 1, 1);
                 if ($detectar != "p") {
-                    $rsW = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
-                    $filaW = $bd->fil($rsW);
+                    $rsW = mysqli_query($conn, "select * from comunicaciones where id='" . $matriz[$i] . "';");
+                    $filaW = mysqli_fetch_assoc($rsW);
+                    $colA = mysqli_num_rows($rsW);
                     if ($colA > 0) {
+
+                        $rsA = mysqli_query($conn, "select * from comunicaciones where id='" . $matriz[$i] . "';");
+                        $filaA = mysqli_fetch_assoc($rsA);
                         $comunicacion = new Comunicacion($filaA["id"]);
-                        $rsW = $bd->query("select * from comunicaciones where id='" . $matrizFinal[$i] . "';");
-                        $filaW = $bd->fil($rsA);
                         $comunicacion->fecha = $filaA["fecha"];
                         $comunicacion->materia = $filaA["materia"];
-                        $comunicacion->asignatura = $filaA["asignatura"];
-                        $comunicacion->url = "https://colegioatenea.es/zona-padres/zona-padres-2/comunicaciones-ampliada-padre?nm=" . $matrizFinal[$i];
+
+
+                        //$comunicacion->asignatura = $filaA["asignatura"];
+
+                        $comunicacion->url = "https://colegioatenea.es/zona-padres/zona-padres-2/comunicaciones-ampliada-padre?nm=" . $matriz[$i];
                         $comunicacion->titulo = $filaA["titulo"];
-                        $comunicacion->profesor = $filaW["nombre"] . " " . $filaW["apellidos"];
+                        $comunicacion->profesor = $filaAlumno["nombre"] . " " . $filaAlumno["apellidos"];
                         $Comunicaciones[] = $comunicacion;
                     }
                 }
             }
         }
-        $res = json_encode($Comunicaciones, JSON_NUMERIC_CHECK);
-        echo $res;
+        echo json_encode($Comunicaciones, JSON_FORCE_OBJECT);
         break;
     case '':
         break;
 }
 
 
-
-
 //Imprimo la variable con el array codificado y con el null, según sea el caso.
-if (isset($padre)) {
-    $res = json_encode($padre, JSON_NUMERIC_CHECK);
-} else if (isset($alumno)) {
-    $res = json_encode($alumno, JSON_NUMERIC_CHECK);
-} else {
-
+if (isset($sql)) {
     //Realizo la consulta
     $rs = mysqli_query($conn, $sql);
 
@@ -211,9 +212,10 @@ if (isset($padre)) {
         $res = null;
         echo mysqli_error($conn);
     }
+    //Cierro la consulta
+    mysqli_close($conn);
+    //Hago que el archivo PHP (si lo necesito abrir para hacer pruebas) me lo devuelva como json
+    echo $res;
 }
 //Cierro la consulta
 mysqli_close($conn);
-
-//Hago que el archivo PHP (si lo necesito abrir para hacer pruebas) me lo devuelva como json
-echo $res;
