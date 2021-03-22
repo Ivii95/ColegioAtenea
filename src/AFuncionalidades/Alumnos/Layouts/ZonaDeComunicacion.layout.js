@@ -3,22 +3,43 @@ import { View, StyleSheet, Table, Row, TableWrapper, Col, Rows, Text, FlatList }
 //import styless from '../../../css/main'
 
 function ContainerLayout(props) {
-    const renderItem = ({ item }) => (
-        <View style={styles.row}>
-            <Text>Feo{item.titulo}</Text>
+    const Item = ({ asignatura, titulo }) => (
+        <View style={styles.container}>
+            <Text style={styles.title}>{asignatura}</Text>
+            <Text style={styles.title}>{titulo}</Text>
         </View>
     );
+
+    const renderItem = ({ item }) => (
+        <Item asignatura={item.asignatura} titulo={item.titulo} />
+    );
+
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+    console.log(props.data);
     return (
-        <View style={styles.col}>
-            <Text>Feo{props.data.titulo}</Text>
-            <FlatList
-                data={props.data}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
+<       View style={styles.container}>
+                <FlatList
+                    data={props.data}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
         </View>
-    )
+)
+        {/*<View style={styles.container}>
+            <Text>Asignatura: {datosObj.asignatura}</Text>
+            <Text>Fecha: {datosObj.fecha}</Text>
+            <Text>Id: {datosObj.id}</Text>
+            <Text>Materia: {datosObj.materia}</Text>
+            <Text>Profesor: {datosObj.profesor}</Text>
+            <Text>Titulo: {datosObj.titulo}</Text>
+            <Text>Url: {datosObj.url}</Text>
+    </View>*/}
 }
+
+
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
     head: { height: 40, backgroundColor: '#f1f8ff' },

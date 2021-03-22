@@ -22,7 +22,7 @@ export var SELECCION = 'user'
 
 
 //URL DE LAS DIRECCIONES DEL SERVIDOR
-export const IP_ = "192.168.0.18"
+export const IP_ = "192.168.0.210"
 export const URL_BASE = "http://" + IP_ + "/atenea/"
 export const DB_PROFESOR = URL_BASE + 'config.php?opcion=' + PROFESOR
 export const DB_ALUMNO = URL_BASE + 'config.php?opcion=' + ALUMNO

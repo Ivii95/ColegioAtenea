@@ -25,6 +25,7 @@ class Profesor extends Component {
         await fetch(G.SELECT_PROFESOR + G.ID_PROFESOR)
             .then((response) => response.json())
             .then((data) => {
+                console.log(data)
                 this.setState({ data: data });
             })
             .catch((error) => console.error(error))

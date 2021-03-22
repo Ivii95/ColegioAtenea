@@ -22,6 +22,7 @@ class Padres extends Component {
         await fetch(G.SELECT_PADRES + G.ID_PADRE)
             .then((response) => response.json())
             .then((data) => {
+                console.log(data)
                 this.setState({ data: data });
             })
             .catch((error) => console.error(error))

@@ -14,6 +14,7 @@ class Screen extends Component {
         super(props);
         this.state = {
             data: [],
+            isLoading: true,
             //Cogemos el id y el nombre de las variables globales que hemos cogido al registrarse.
             id: G.ID_PROFESOR,
             header: G.NAME,
@@ -25,6 +26,7 @@ class Screen extends Component {
         await fetch(G.SELECT_ALUMNO_COMUNICACIONES + G.ID_ALUMNO)
             .then((response) => response.json())
             .then((data) => {
+                //console.log(data)
                 this.setState({ data: data });
             })
             .catch((error) => console.error(error))
@@ -33,7 +35,8 @@ class Screen extends Component {
             });
     }
     render() {
-        let id = this.state.id
+        //let id = this.state.id
+        const data = this.state.data
         let header = this.state.header
         let footer = this.state.footer
         return (
@@ -42,7 +45,7 @@ class Screen extends Component {
             //Pasamos el ID al body para que se pueda avisar a la base de datos para coger los datos de ese profesor.
             <View style={{ flex: 1 }}>
                 <Header text={header} />
-                <Body data={this.state.data} />
+                <Body data={data} />
                 <Footer footer={footer} />
             </View>
         );
