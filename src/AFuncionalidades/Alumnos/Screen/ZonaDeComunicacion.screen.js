@@ -39,6 +39,7 @@ class Screen extends Component {
         const data = this.state.data
         let header = this.state.header
         let footer = this.state.footer
+        //console.log(this.state.data);
         return (
             //Aqui definimos el primer View como flex 1 para que ocupe toda la pantalla.
             //Despues añadimos el Header el Body y el Footer.

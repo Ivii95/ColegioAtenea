@@ -1,75 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Table, Row, Rows } from 'react-native-table-component';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import ContainerLayout from '../Layouts/ZonaDeComunicacion.layout'
 import * as G from '../../../functions/GLOBALES'
+import { FlatList } from 'react-native-gesture-handler';
 class Body extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      headerData: ["ID","Fecha", "Materia", "Asign", "Url", "Titulo","Profesor"],//initialisation of header of table
-      tableContents: []
-    }//initialisation of table contents
   }
 
-  /*renderRow() {
-    return (
-      tableData.add['a', 'b', 'c', 'd']
-    );
-  }*/
   render() {
-    const arrayEntries = Object.values(this.props.data);
-    const valores=[];
-    for(let i = 0; i < arrayEntries.length; i++){
-    Object.entries(arrayEntries[i]).map(([key, value]) => {
-      console.log(`${key}: ${value}`);
-      valores.push(value);
-     // arrayEntries.push(`${key}: ${value}`);
-      // Pretty straightforward - use key for the key and value for the value.
-      // Just to clarify: unlike object destructuring, the parameter names don't matter here.
-    })
-  }
-    console.log(arrayEntries);
-    console.log(valores);
-    console.log('*****************************************************************************************************************');
-    console.log('*****************************************************************************************************************');
-    console.log('*****************************************************************************************************************');
-    console.log('*****************************************************************************************************************');
-    //console.log(this.props.data);
-    //console.log(this.props.data[0]);
+    const arrayObjComunicacion = Object.values(this.props.data);
 
-    const state = this.state;
+    const Item = ({ id, asignatura, fecha, materia, profesor, titulo, url }) => (
+      <Text>Id: {id}{"\n"}
+      Asignatura: {asignatura}{"\n"}
+      Fecha: {fecha}{"\n"}
+      Materia: {materia}{"\n"}
+      Profesor: {profesor}{"\n"}
+      Titulo: {titulo}{"\n"}
+      Url: {url}{"\n"}</Text>
+    );
+
+    const renderItem = ({ item }) => (
+      <Item id={item.id} asignatura={item.asignatura} fecha={item.fecha} materia={item.materia} profesor={item.profesor} titulo={item.titulo} url={item.url} />
+    );
+
     return (
-      <View>
-        <Table>
-          <Row data={state.headerData} />
-          <Rows data={state.tableContents} />
-        </Table>
+      <View style={styles.container}>
+        <View style={styles.colTop}>
+          <FlatList
+            data={arrayObjComunicacion}
+            renderItem={renderItem}
+          />
+        </View>
       </View>
-    )
-
-
-    // Funcionando para un elemento
-    {/*for (const [key, value] of Object.entries(this.props.data)) {
-      console.log(`${key}: ${value}`);
-      return (
-        <ContainerLayout
-          data={value}
-        />
-      )
-    }*/}
-
-    const datosComu = this.props.data;
-    //console.log('********************* MOSTRANDO LA DATA DESDE EL COMPONENT *********************');
-    //console.log(datosComu[0]);
-    return (
-      <ContainerLayout
-        data={datosComu}
-      />
-
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: { flex: 3, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   head: { height: 40, backgroundColor: '#f1f8ff' },
