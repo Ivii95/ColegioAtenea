@@ -11,11 +11,18 @@ function ContainerLayout(props) {
     console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
     console.log(arrayEntries);
 
+
     return (
 <       View style={styles.container}>
-
+        <FlatList
+            data={arrayEntries}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+        />
         </View>
+
 )
+
         {/*<View style={styles.container}>
             <Text>Asignatura: {datosObj.asignatura}</Text>
             <Text>Fecha: {datosObj.fecha}</Text>

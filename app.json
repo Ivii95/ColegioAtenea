@@ -23,7 +23,11 @@
       "favicon": "./src/img/Logo98.png"
     },
     "android": {
-      "package": "com.ivan95mq.AteneApp"
-    }
+      "package": "com.ivan95mq.AteneApp",
+      "googleServicesFile": "./google-services.json",
+      "useNextNotificationsApi": true
+    },
+    "description": "Aplicacion para el colegio atenea de merida",
+    "githubUrl": "https://github.com/Ivii95/ColegioAtenea"
   }
 }

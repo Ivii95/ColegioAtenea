@@ -5,11 +5,25 @@ import Header from '../components/header';
 //Aqui definimos que el body sea el de un profesor para que pueda acceder a los datos de el mismo.
 import Body from '../components/seleccionPrincipal';
 import Footer from '../components/footer';
+import * as Notifications from 'expo-notifications';
+import * as Permisions from 'expo-permissions';
 //VARIABLES GLOBALES
 import * as G from '../functions/GLOBALES'
 
+const getToken = async () => {
+    const {status} = await Permisions.getAsync(Permisions.NOTIFICATIONS);
+    if( status !== "granted"){
+      return;
+    }
+    const token = Notifications.getExpoPushTokenAsync();
+    console.log(token);
+    return token;
+  };
 //Este es el componente principal de los Profesores.
-class SeleccionPrincipal extends Component {
+class SeleccionPrincipal extends React.Component {
+    /*componentDidMount(){
+        getToken();
+    }*/
     //Aqui definimos las variables mas importantes de los profesores.
     constructor(props) {
         super(props);
